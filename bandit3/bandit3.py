@@ -1,9 +1,7 @@
 import sys
 import os
-# assuming that we run the file from the parent directory, 
-# utils.py is in the current directory, so add current directory to the path
-# otherwise, add the parent directory to the path
-sys.path.insert(1, os.getcwd() if 'utils.py' in os.listdir() else '..')
+# get the path of utils.py, which is stored in the parent directory
+sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)) + '/..')
 
 import paramiko
 import utils
