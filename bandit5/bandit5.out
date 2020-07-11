@@ -1,0 +1,52 @@
+connecting...
+
+ls -la
+##################################################
+total 24
+drwxr-xr-x  3 root root    4096 May  7 20:15 .
+drwxr-xr-x 41 root root    4096 May  7 20:14 ..
+-rw-r--r--  1 root root     220 May 15  2017 .bash_logout
+-rw-r--r--  1 root root    3526 May 15  2017 .bashrc
+drwxr-x--- 22 root bandit5 4096 May  7 20:15 inhere
+-rw-r--r--  1 root root     675 May 15  2017 .profile
+##################################################
+
+cd inhere && ls -la
+##################################################
+total 88
+drwxr-x--- 22 root bandit5 4096 May  7 20:15 .
+drwxr-xr-x  3 root root    4096 May  7 20:15 ..
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere00
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere01
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere02
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere03
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere04
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere05
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere06
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere07
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere08
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere09
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere10
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere11
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere12
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere13
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere14
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere15
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere16
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere17
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere18
+drwxr-x---  2 root bandit5 4096 May  7 20:15 maybehere19
+##################################################
+
+find ./inhere -type f -size 1033c ! -executable -exec file {} + | grep ASCII
+##################################################
+./inhere/maybehere07/.file2: ASCII text, with very long lines
+##################################################
+
+cat ./inhere/maybehere07/.file2
+##################################################
+DXjZPULLxYr17uwoI01bNLQbtFemEgo7
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+##################################################
+
+bandit6 password: DXjZPULLxYr17uwoI01bNLQbtFemEgo7

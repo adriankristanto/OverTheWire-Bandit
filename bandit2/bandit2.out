@@ -1,0 +1,19 @@
+connecting...
+
+ls -la
+##################################################
+total 24
+drwxr-xr-x  2 root    root    4096 May  7 20:14 .
+drwxr-xr-x 41 root    root    4096 May  7 20:14 ..
+-rw-r--r--  1 root    root     220 May 15  2017 .bash_logout
+-rw-r--r--  1 root    root    3526 May 15  2017 .bashrc
+-rw-r--r--  1 root    root     675 May 15  2017 .profile
+-rw-r-----  1 bandit3 bandit2   33 May  7 20:14 spaces in this filename
+##################################################
+
+cat 'spaces in this filename'
+##################################################
+UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+##################################################
+
+bandit3 password: UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
