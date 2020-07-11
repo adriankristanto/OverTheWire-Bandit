@@ -23,15 +23,17 @@ def print_stdout(stdout):
 
     print("#" * 50 + '\n')
 
-def print_password(stdout):
+
+def get_password(stdout):
     """
     stoud: password returned by the remote server
     """
     time.sleep(SLEEP)
 
-    print("#" * 50)
-    
-    # remove any whitespaces from the password
-    print(f"{stdout.translate('', '', string.whitespace)}")
+    password = ''
 
-    print("#" * 50)
+    # remove any whitespaces from the password
+    # reference: https://stackoverflow.com/questions/3739909/how-to-strip-all-whitespace-from-string
+    password = ''.join(stdout).strip('\n').translate(str.maketrans('', '', string.whitespace))
+
+    return password
