@@ -32,6 +32,6 @@ jobs:
         pip3 install paramiko
         for i in {0..5}; do python3 bandit$i/bandit$i.py | tee bandit$i/bandit$i.out1; done
         echo "Start diff command"
-        for i in {0..5}; do echo $i; diff bandit$i/bandit$i.out1 bandit$i/bandit$i.out; done
+        for i in {0..5}; do echo $i; diff bandit$i/bandit$i.out1 bandit$i/bandit$i.out; echo -e "\n\n\n"; done
         echo "End diff command"
         for i in {0..5}; do rm bandit$i/bandit$i.out1; done
