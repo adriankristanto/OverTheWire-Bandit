@@ -38,7 +38,10 @@ utils.print_stdout(stdout)
 # read the file with the ASCII type
 print('cat ./inhere/-file07')
 stdin, stdout, stderr = client.exec_command('cat ./inhere/-file07')
-password = utils.print_stdout(stdout, 1)
+
+stdout = stdout.readlines()
+password = utils.get_password(stdout)
+utils.print_stdout(stdout)
 
 # bandit5 password: koReBOKuIDDepwhWk7jZC0RTdopnAYKh
 print(f'bandit5 password: {password}')

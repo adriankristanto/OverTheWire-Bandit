@@ -22,7 +22,9 @@ utils.print_stdout(stdout)
 print('executing cat ./-...')
 stdin, stdout, stderr = client.exec_command('cat ./-')
 
-password = utils.print_stdout(stdout, 1)
+stdout = stdout.readlines()
+password = utils.get_password(stdout)
+utils.print_stdout(stdout)
 
 # bandit2 password: CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
 print('bandit2 password: ' + password)

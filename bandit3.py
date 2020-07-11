@@ -24,7 +24,10 @@ utils.print_stdout(stdout)
 # read the hidden file
 print('cat ./inhere/.hidden')
 stdin, stdout, stderr = client.exec_command('cat ./inhere/.hidden')
-password = utils.print_stdout(stdout, 1)
+
+stdout = stdout.readlines()
+password = utils.get_password(stdout)
+utils.print_stdout(stdout)
 
 # bandit4 password: pIwrPrtPN36QITSp3EQaw936yaFoFgAB
 print(f'bandit4 password: {password}')

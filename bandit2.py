@@ -20,7 +20,9 @@ utils.print_stdout(stdout)
 print("cat 'spaces in this filename'")
 stdin, stdout, stderr = client.exec_command("cat 'spaces in this filename'")
 
-password = utils.print_stdout(stdout, 1)
+stdout = stdout.readlines()
+password = utils.get_password(stdout)
+utils.print_stdout(stdout)
 
 # bandit3 password: UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
 print("bandit3 password: " + password)
