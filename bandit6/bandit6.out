@@ -1,0 +1,13 @@
+connecting...
+
+find / -type f -user bandit7 -group bandit6 -exec file {} + | grep ASCII
+##################################################
+/var/lib/dpkg/info/bandit7.password: ASCII text
+##################################################
+
+cat /var/lib/dpkg/info/bandit7.password
+##################################################
+HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
+##################################################
+
+bandit7 password: HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
