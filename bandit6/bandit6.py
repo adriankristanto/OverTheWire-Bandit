@@ -28,5 +28,7 @@ stdout = stdout.readlines()
 password = utils.get_password(stdout)
 utils.print_stdout(stdout)
 
-# bandit7 password: DXjZPULLxYr17uwoI01bNLQbtFemEgo7
+# bandit7 password: HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
 print(f"bandit7 password: {password}")
+
+client.close()
