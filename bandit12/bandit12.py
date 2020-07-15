@@ -165,5 +165,5 @@ print_out(password)
 
 os.remove('data8')
 
-# The password is 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+# bandit12 password: 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
 print(f"bandit12 password: {password}")
