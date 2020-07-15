@@ -110,13 +110,60 @@ cmd11 = subprocess.run(['file', 'data5.bin'], capture_output=True)
 print_out(cmd11.stdout.decode().strip())
 
 # tar -xvf data5.bin && rm data5.bin
+print('tar -xvf data5.bin && rm data5.bin')
+cmd12 = subprocess.run(['tar', '-xvf', 'data5.bin'], capture_output=True)
+print_out(cmd12.stdout.decode().strip())
+os.remove('data5.bin')
+
 # file data6.bin
+print('file data6.bin')
+cmd13 = subprocess.run(['file', 'data6.bin'], capture_output=True)
+print_out(cmd13.stdout.decode().strip())
+
 # bzip2 -d data6.bin
+print("bzip2 -d data6.bin")
+cmd14 = subprocess.run(['bzip2', '-d', 'data6.bin'], capture_output=True)
+print_out(cmd14.stdout.decode().strip())
+
 # file data6.bin.out
+print('file data6.bin.out')
+cmd15 = subprocess.run(['file', 'data6.bin.out'], capture_output=True)
+print_out(cmd15.stdout.decode().strip())
+
 # tar -xvf data6.bin.out && rm data6.bin.out
+print('tar -xvf data6.bin.out && rm data6.bin.out')
+cmd16 = subprocess.run(['tar', '-xvf', 'data6.bin.out'], capture_output=True)
+print_out(cmd16.stdout.decode().strip())
+os.remove('data6.bin.out')
+
 # file data8.bin
+print('file data8.bin')
+cmd17 = subprocess.run(['file', 'data8.bin'], capture_output=True)
+print_out(cmd17.stdout.decode().strip())
+
 # mv data8.bin data8.gz && gzip -d data8.gz
+print('mv data8.bin data8.gz && gzip -d data8.gz')
+os.rename('data8.bin', 'data8.gz')
+cmd18 = subprocess.run(['gzip', '-d', 'data8.gz'])
+
 # file data8
-# cat data8
+print('file data8')
+cmd17 = subprocess.run(['file', 'data8'], capture_output=True)
+print_out(cmd17.stdout.decode().strip())
+
+# cat data8 | awk '{print $4}'
+# reference: https://stackoverflow.com/questions/295459/how-do-i-use-subprocess-popen-to-connect-multiple-processes-by-pipes
+print("cat data8 | awk '{print $4}'")
+# send the output to PIPE
+cmd18 = subprocess.Popen(['cat', 'data8'], stdout=subprocess.PIPE)
+# accept input from PIPE
+cmd19 = subprocess.Popen(['awk', '{print $4}'], stdin=cmd18.stdout, stdout=subprocess.PIPE)
+# use .communicate() to get the output
+# where index 0 is the output of the last command
+password = cmd19.communicate()[0].decode().strip()
+print_out(password)
+
+os.remove('data8')
 
 # The password is 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+print(f"bandit12 password: {password}")
