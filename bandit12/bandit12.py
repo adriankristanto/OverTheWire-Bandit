@@ -88,9 +88,27 @@ cmd7 = subprocess.run(['file', 'data2.out'], capture_output=True)
 print_out(cmd7.stdout.decode().strip())
 
 # mv data2.out data4.gz && gzip -d data4.gz
+print('mv data2.out data4.gz && gzip -d data4.gz')
+os.rename('data2.out', 'data4.gz')
+cmd8 = subprocess.run(['gzip', '-d', 'data4.gz'])
+
 # file data4
+print('file data4')
+cmd9 = subprocess.run(['file', 'data4'], capture_output=True)
+print_out(cmd9.stdout.decode().strip())
+
 # tar -xvf data4 && rm data4
+print('tar -xvf data4 && rm data4')
+cmd10 = subprocess.run(['tar', '-xvf', 'data4'])
+print_out(cmd10.stdout.decode().strip())
+
+os.remove('data4')
+
 # file data5.bin
+print('file data5.bin')
+cmd11 = subprocess.run(['file', 'data5.bin'], capture_output=True)
+print_out(cmd11.stdout.decode().strip())
+
 # tar -xvf data5.bin && rm data5.bin
 # file data6.bin
 # bzip2 -d data6.bin
