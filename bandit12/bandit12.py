@@ -28,22 +28,28 @@ if 'data.txt' not in os.listdir(os.path.dirname(os.path.realpath(__file__))):
     scp_client.get('data.txt')
 
     # fixed progress printing with print()
-    print()
+    print('\n')
     scp_client.close()
     client.close()
 else:
     print("data.txt has been downloaded")
 
+# defining custom print function as it differs from previous levels
+def print_out(out):
+    print('#' * 50)
+    print(out)
+    print('#' * 50 + '\n')
+
 # file data.txt
 # get the type of data.txt
 print('file data.txt')
 cmd1 = subprocess.run(['file', 'data.txt'], capture_output=True)
-print(cmd1.stdout.decode().strip())
+print_out(cmd1.stdout.decode().strip())
 
 # xxd -r data.txt > data2.bin && rm data.txt
 # now that we know data.txt is the output of xxd, 
 # we can reverse it back to binary using xxd with option r
-print('xxd -r data.txt > data2.bin && rm data.txt')
+print('xxd -r data.txt > data2.bin && rm data.txt\n')
 
 # another option is to open a writable file in python and write 
 # the output of xxd -r into the opened file
@@ -56,12 +62,31 @@ os.remove('data.txt')
 # file data2.bin
 print('file data2.bin')
 cmd3 = subprocess.run(['file', 'data2.bin'], capture_output=True)
-print(cmd3.stdout.decode().strip())
+print_out(cmd3.stdout.decode().strip())
 
 # mv data2.bin data2.gz && gzip -d data2.gz
+# note that gzip needs the input file to have the suffix .gz
+print('mv data2.bin data2.gz && gzip -d data2.gz\n')
+os.rename('data2.bin', 'data2.gz')
+
+# gzip doesn't produce any output to the stdout
+cmd4 = subprocess.run(['gzip', '-d', 'data2.gz'])
+
 # file data2
+print('file data2')
+cmd5 = subprocess.run(['file', 'data2'], capture_output=True)
+print_out(cmd5.stdout.decode().strip())
+
 # bzip2 -d data2
+print("bzip2 -d data2")
+cmd6 = subprocess.run(['bzip2', '-d', 'data2'], capture_output=True)
+print_out(cmd6.stdout.decode().strip())
+
 # file data2.out
+print("file data2.out")
+cmd7 = subprocess.run(['file', 'data2.out'], capture_output=True)
+print_out(cmd7.stdout.decode().strip())
+
 # mv data2.out data4.gz && gzip -d data4.gz
 # file data4
 # tar -xvf data4 && rm data4
