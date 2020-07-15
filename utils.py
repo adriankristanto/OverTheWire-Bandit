@@ -1,5 +1,6 @@
 import time
 import string
+import sys
 
 
 ADDRESS = 'bandit.labs.overthewire.org'
@@ -37,3 +38,9 @@ def get_password(stdout):
     password = ''.join(stdout).strip('\n').translate(str.maketrans('', '', string.whitespace))
 
     return password
+
+
+# scp util progress
+# reference: https://github.com/jbardin/scp.py
+def progress(filename, size, sent):
+    sys.stdout.write(f"{filename.decode()} progress: {float(sent) / float(size) * 100:.2f}%\r")
