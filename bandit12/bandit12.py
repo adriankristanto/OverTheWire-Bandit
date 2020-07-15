@@ -99,7 +99,7 @@ print_out(cmd9.stdout.decode().strip())
 
 # tar -xvf data4 && rm data4
 print('tar -xvf data4 && rm data4')
-cmd10 = subprocess.run(['tar', '-xvf', 'data4'])
+cmd10 = subprocess.run(['tar', '-xvf', 'data4'], capture_output=True)
 print_out(cmd10.stdout.decode().strip())
 
 os.remove('data4')
