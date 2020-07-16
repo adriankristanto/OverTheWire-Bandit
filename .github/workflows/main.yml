@@ -26,4 +26,5 @@ jobs:
     - name: Run a multi-line script
       run: |
         pip3 install paramiko
+        pip3 install scp
         for i in bandit*/bandit*.py; do python3 $i | tail -n1; done
