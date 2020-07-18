@@ -17,6 +17,7 @@ client.connect(hostname=utils.ADDRESS, port=utils.PORT, username=USERNAME, passw
 # send the password of the current user, bandit15, to localhost port 30001 with SSL encryption
 # note: -ign_eof helps to open the connection even when the end of file has been reached
 # without -ign_eof, we won't be able to do it in one line. We would need to connect first only then we would be able to send the message.
+print(f'echo {PASSWORD} | openssl s_client -connect localhost:30001 -ign_eof')
 _, stdout, _ = client.exec_command(f'echo {PASSWORD} | openssl s_client -connect localhost:30001 -ign_eof')
 stdout = stdout.readlines()
 utils.print_stdout(stdout)
