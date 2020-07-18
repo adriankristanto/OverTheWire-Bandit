@@ -24,6 +24,7 @@ jobs:
 
     - name: install paramiko and scp
       run: |
+        sudo apt-get install python3-pip
         pip3 install paramiko
         pip3 install scp
 
