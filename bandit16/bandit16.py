@@ -11,7 +11,7 @@ PASSWORD = 'cluFn7wTiGryunymYOu4RcffSxQluehd'
 client = paramiko.SSHClient()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-print('connecting...\n')
+print('connecting as bandit16...\n')
 client.connect(hostname=utils.ADDRESS, port=utils.PORT, username=USERNAME, password=PASSWORD)
 
 # we use nmap to determine the open port in range 31000 to 32000
@@ -27,6 +27,8 @@ _, stdout, _ = client.exec_command(f'echo {PASSWORD} | openssl s_client -connect
 stdout = stdout.readlines()
 utils.print_stdout(stdout)
 
+client.close()
+
 # write the private key file of bandit17
 start = stdout.index('-----BEGIN RSA PRIVATE KEY-----\n')
 end = stdout.index('-----END RSA PRIVATE KEY-----\n')
@@ -35,5 +37,23 @@ with open('sshkey.private', 'w') as f:
         f.write(lines)
     f.write(stdout[end].strip())
 
-client.close()
+# change the permission of the private key
+# otherwise, the permission would be too open
+# and an error would occur
+os.chmod('sshkey.private', 0o600)
+
+bandit17_client = paramiko.SSHClient()
+bandit17_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+# connecting as bandit17
+print('connecting as bandit17...\n')
+key=paramiko.RSAKey.from_private_key_file('sshkey.private')
+bandit17_client.connect(hostname=utils.ADDRESS, port=utils.PORT, username='bandit17', pkey=key)
+
+# read the password from /etc/bandit_pass/bandit17
+_, stdout, _ = bandit17_client.exec_command('cat /etc/bandit_pass/bandit17')
+utils.print_stdout(stdout)
+
+bandit17_client.close()
+
 os.remove('sshkey.private')
