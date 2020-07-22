@@ -6,6 +6,7 @@ import paramiko
 import utils
 import time
 from tqdm import tqdm
+import uuid
 
 USERNAME = 'bandit23'
 PASSWORD = 'jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n'
@@ -59,7 +60,7 @@ fi
 # if the owner of the file is bandit23, it will execute it for 60 seconds
 
 # since we want to read bandit24 password in /etc/bandit_pass/bandit24
-FOLDER_NAME = "temporaryfolderforbandit24"
+FOLDER_NAME = str(uuid.uuid4())
 BASH_SCRIPT = f"""#!/bin/bash
 # create a temporary folder for storing the password file
 mkdir /tmp/{FOLDER_NAME}
