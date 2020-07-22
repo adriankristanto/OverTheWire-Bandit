@@ -61,6 +61,7 @@ bandit26_client.connect(hostname=utils.ADDRESS, port=utils.PORT, username='bandi
 # the editor is set in environment variable EDITOR or VISUAL
 # reference: https://man7.org/linux/man-pages/man1/more.1.html
 
+# NOTE: press 'esc' to change to command mode in 'vi'
 # it seems that the editor is set to 'vi', therefore, we can use the following commands
 # reference: https://people.cs.ksu.edu/~bhoward/vi/vi60.html
 # :e to edit another file, which we can use to open /etc/bandit_pass/bandit26
