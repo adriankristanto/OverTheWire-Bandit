@@ -48,6 +48,27 @@ print('connecting as bandit26...\n')
 key = paramiko.RSAKey.from_private_key_file('bandit26.sshkey')
 bandit26_client.connect(hostname=utils.ADDRESS, port=utils.PORT, username='bandit26', pkey=key)
 
+# NOTE: since we will be dealing with 'vi' and 'more', we won't be able to complete
+# the challenge programmatically.
+
+# make sure to make the terminal window as small as possible before logging in as bandit26
+# this is to prevent the completion of 'more' program
+# because 'more' depends on the screen size, if the screen is too small to contain the content of the 
+# file, then more will not show everything immediately
+# instead, it will wait for user interaction
+
+# next, we can type 'v' to get into an editor while we are still in 'more'
+# the editor is set in environment variable EDITOR or VISUAL
+# reference: https://man7.org/linux/man-pages/man1/more.1.html
+
+# it seems that the editor is set to 'vi', therefore, we can use the following commands
+# reference: https://people.cs.ksu.edu/~bhoward/vi/vi60.html
+# :e to edit another file, which we can use to open /etc/bandit_pass/bandit26
+password = '5czgV9L3Xx8JPOyRbXh6lQbmIOWvPT6Z'
+print(f'bandit26 password: {password}')
+# :set shell=/bin/bash to set the shell to /bin/bash
+# :shell to get the shell
+
 bandit26_client.close()
 
 os.remove('bandit26.sshkey')
