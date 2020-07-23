@@ -31,6 +31,12 @@ sh: 1: LS: not found
 # from above, we can see that whatever command that we passed into it
 # will be changed into an uppercase version of the command
 # and then passed to sh to be executed
+# sh LS
+# thus, it return an error as sh can't find the command
+
+# sh is the one executing the command here, therefore, $0 = sh
+# $1 is LS
+
 # reference: https://unix.stackexchange.com/questions/280454/what-is-the-meaning-of-0-in-the-bash-shell
 # therefore, we will be able to get access to sh by using the command $0
 
