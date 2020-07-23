@@ -16,4 +16,15 @@ client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 print('connecting...\n')
 client.connect(hostname=utils.ADDRESS, port=utils.PORT, username=USERNAME, password=PASSWORD)
 
+FOLDERNAME = uuid.uuid4()
+REPONAME = 'ssh://bandit28-git@localhost/home/bandit28-git/repo'
+
+print(f'folder name: {FOLDERNAME}')
+stdin, stdout, _ = client.exec_command(f'mkdir /tmp/{FOLDERNAME} && cd /tmp/{FOLDERNAME} && git clone {REPONAME}')
+
+
+# cleanup
+print('deleting temporary folder...')
+_, stdout, _ = client.exec_command(f'rm -rf /tmp/{FOLDERNAME}')
+
 client.close()
