@@ -46,4 +46,10 @@ time.sleep(1)
 output = remote.recv(65535)
 print(output.decode())
 
+remote.send('cat /etc/bandit_pass/bandit33')
+remote.send('\n')
+time.sleep(1)
+output = remote.recv(65535)
+print(output.decode())
+
 client.close()
