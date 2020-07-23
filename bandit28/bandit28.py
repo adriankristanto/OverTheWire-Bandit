@@ -22,6 +22,7 @@ REPONAME = 'ssh://bandit28-git@localhost/home/bandit28-git/repo'
 print(f'folder name: {FOLDERNAME}\n')
 print(f'mkdir /tmp/{FOLDERNAME} && cd /tmp/{FOLDERNAME} && git clone {REPONAME}')
 stdin, stdout, _ = client.exec_command(f'mkdir /tmp/{FOLDERNAME} && cd /tmp/{FOLDERNAME} && git clone {REPONAME}', get_pty=True)
+time.sleep(1)
 # Are you sure you want to continue connecting (yes/no)?
 stdin.write('yes\n')
 time.sleep(1)
