@@ -50,6 +50,9 @@ remote.send('cat /etc/bandit_pass/bandit33')
 remote.send('\n')
 time.sleep(1)
 output = remote.recv(65535)
-print(output.decode())
+print(output.decode() + '\n')
+
+password = output.decode().split()[-2]
+print(f'bandit33 password: {password}')
 
 client.close()
