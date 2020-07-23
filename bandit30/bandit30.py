@@ -8,4 +8,9 @@ import time
 import uuid
 
 USERNAME = 'bandit30'
-PASSWORD = 'bbc96594b4e001778eee9975372716b2'
+PASSWORD = '5b90576bedb2cc04c86a9e924ce42faf'
+
+print('connecting...\n')
+client.connect(hostname=utils.ADDRESS, port=utils.PORT, username=USERNAME, password=PASSWORD)
+
+client.close()
