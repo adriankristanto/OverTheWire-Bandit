@@ -24,6 +24,10 @@ REPONAME = 'ssh://bandit27-git@localhost/home/bandit27-git/repo'
 print(f'mkdir /tmp/{FOLDERNAME} && cd /tmp/{FOLDERNAME} && git clone {REPONAME}')
 # get_pty to get the prompt to insert password
 stdin, stdout, _ = client.exec_command(f'mkdir /tmp/{FOLDERNAME} && cd /tmp/{FOLDERNAME} && git clone {REPONAME}', get_pty=True)
+# the following time.sleep(1) allows the remote server to return the prompt first before sending the input to stdin
+# this is to ensure consistency, otherwise, there are some rare cases where the program will get stuck as it hasn't 
+# received the full prompt from the remote server 
+time.sleep(1)
 # Are you sure you want to continue connecting (yes/no)?
 stdin.write('yes\n')
 time.sleep(1)
