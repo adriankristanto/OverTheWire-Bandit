@@ -1,0 +1,23 @@
+connecting...
+
+strings data.txt | awk '/=+/'
+##################################################
+========== the*2i"4
+=:G e
+========== password
+<I=zsGi
+Z)========== is
+A=|t&E
+Zdb=
+c^ LAh=3G
+*SF=s
+&========== truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+S=A.H&^
+##################################################
+
+strings data.txt | awk '/=+ /' | tail -n1 | awk '{print $2}'
+##################################################
+truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+##################################################
+
+bandit10 password: truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
