@@ -19,9 +19,19 @@ client.connect(hostname=utils.ADDRESS, port=utils.PORT, username=USERNAME, passw
 FOLDERNAME = uuid.uuid4()
 REPONAME = 'ssh://bandit28-git@localhost/home/bandit28-git/repo'
 
-print(f'folder name: {FOLDERNAME}')
+print(f'folder name: {FOLDERNAME}\n')
+print(f'mkdir /tmp/{FOLDERNAME} && cd /tmp/{FOLDERNAME} && git clone {REPONAME}')
 stdin, stdout, _ = client.exec_command(f'mkdir /tmp/{FOLDERNAME} && cd /tmp/{FOLDERNAME} && git clone {REPONAME}', get_pty=True)
+# Are you sure you want to continue connecting (yes/no)?
+stdin.write('yes\n')
+time.sleep(1)
+stdin.write(PASSWORD + '\n')
+stdin.flush()
+utils.print_stdout(stdout)
 
+print(f'cd /tmp/{FOLDERNAME} && git log -a')
+_, stdout, _ = client.exec_command(f'cd /tmp/{FOLDERNAME} && git log -a')
+utils.print_stdout(stdout)
 
 # cleanup
 print('deleting temporary folder...')
