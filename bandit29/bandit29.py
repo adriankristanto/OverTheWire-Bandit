@@ -43,6 +43,15 @@ _, stdout, _ = client.exec_command(f"cd /tmp/{FOLDERNAME}/repo && git branch -a"
 utils.print_stdout(stdout)
 # we found out that there is a "dev" branch, which we can check out
 
+print(f"cd /tmp/{FOLDERNAME}/repo && git checkout dev")
+_, stdout, _ = client.exec_command(f"cd /tmp/{FOLDERNAME}/repo && git checkout dev")
+utils.print_stdout(stdout)
+
+print(f"cat /tmp/{FOLDERNAME}/repo/README.md")
+_, stdout, _ = client.exec_command(f"cat /tmp/{FOLDERNAME}/repo/README.md")
+stdout = stdout.readlines()
+utils.print_stdout(stdout)
+
 # clean up
 print('deleting temporary directory...')
 client.exec_command(f'rm -rf /tmp/{FOLDERNAME}')
