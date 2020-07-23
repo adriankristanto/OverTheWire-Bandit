@@ -32,6 +32,16 @@ stdin.channel.send(PASSWORD + '\n')
 stdin.flush()
 utils.print_stdout(stdout)
 
+# move to the repo and read the readme file
+print(f'cd /tmp/{FOLDERNAME}/repo && cat README')
+_, stdout, _ = client.exec_command(f'cd /tmp/{FOLDERNAME}/repo && cat README')
+stdout = stdout.readlines()
+utils.print_stdout(stdout)
+password = utils.get_password(stdout[0].split()[-1])
+
+# bandit28 password: 0ef186ac70e04ea33b4c1853d2526fa2
+print(f'bandit28 password: {password}')
+
 # cleanup
 print('deleting temporary folder...')
 _, stdout, _ = client.exec_command(f'rm -rf /tmp/{FOLDERNAME}')
