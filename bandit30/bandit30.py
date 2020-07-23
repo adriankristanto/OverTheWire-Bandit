@@ -49,6 +49,10 @@ password = utils.get_password(stdout[0])
 # bandit31 password: 47e603bb428404d265f59c42920d81e5
 print(f'bandit31 password: {password}\n')
 
+# ALTERNATIVE METHOD:
+# we can use "git tag" to show the list of tags available in the repo
+# next, we can use "git show <tag name>" to show the content of the tag
+
 # clean up
 print('deleting temporary directory...')
 client.exec_command(f'rm -rf /tmp/{FOLDERNAME}')
