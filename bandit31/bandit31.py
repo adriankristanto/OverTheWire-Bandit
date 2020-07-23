@@ -28,6 +28,21 @@ stdin.write(f'{PASSWORD}\n')
 stdin.flush()
 utils.print_stdout(stdout)
 
+print(f"cat /tmp/{FOLDERNAME}/repo/README.md")
+_, stdout, _ = client.exec_command(f"cat /tmp/{FOLDERNAME}/repo/README.md")
+utils.print_stdout(stdout)
+# according to the README file, we need to create key.txt file and push it to the repo
+
+print(f"cat /tmp/{FOLDERNAME}/repo/.gitignore")
+_, stdout, _ = client.exec_command(f"cat /tmp/{FOLDERNAME}/repo/.gitignore")
+utils.print_stdout(stdout)
+# however, the gitignore file is configured such that it will ignore txt file, therefore
+# when adding the file, we would need to use the f option
+
+print(f'cd /tmp/{FOLDERNAME}/repo && echo "May I come in?" | tee key.txt')
+_, stdout, _ = client.exec_command(f'cd /tmp/{FOLDERNAME}/repo && echo "May I come in?" | tee key.txt')
+utils.print_stdout(stdout)
+
 # cleanup
 print('deleting temporary directory...')
 client.exec_command(f'rm -rf /tmp/{FOLDERNAME}')
