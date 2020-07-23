@@ -40,7 +40,7 @@ utils.print_stdout(stdout)
 # checkout to commit c086d11a00c0648d095d04c089786efef5e01264
 # to see the leaked info
 COMMIT = "c086d11a00c0648d095d04c089786efef5e01264"
-print(f'cd /tmp/{FOLDERNAME}/repo && git checkout {COMMIT}')
+print(f'cd /tmp/{FOLDERNAME}/repo && git checkout {COMMIT}\n')
 _, stdout, _ = client.exec_command(f'cd /tmp/{FOLDERNAME}/repo && git checkout {COMMIT}')
 
 # now, README.md contains the password to bandit29
@@ -48,7 +48,10 @@ print(f'cd /tmp/{FOLDERNAME}/repo && cat README.md')
 _, stdout, _ = client.exec_command(f'cd /tmp/{FOLDERNAME}/repo && cat README.md')
 stdout = stdout.readlines()
 utils.print_stdout(stdout)
-print(stdout)
+password = stdout[-2].split()[-1]
+
+# bandit29 password: bbc96594b4e001778eee9975372716b2
+print(f'bandit29 password: {password}\n')
 
 # cleanup
 print('deleting temporary folder...')
