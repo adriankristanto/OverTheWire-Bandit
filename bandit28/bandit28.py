@@ -20,7 +20,7 @@ FOLDERNAME = uuid.uuid4()
 REPONAME = 'ssh://bandit28-git@localhost/home/bandit28-git/repo'
 
 print(f'folder name: {FOLDERNAME}')
-stdin, stdout, _ = client.exec_command(f'mkdir /tmp/{FOLDERNAME} && cd /tmp/{FOLDERNAME} && git clone {REPONAME}')
+stdin, stdout, _ = client.exec_command(f'mkdir /tmp/{FOLDERNAME} && cd /tmp/{FOLDERNAME} && git clone {REPONAME}', get_pty=True)
 
 
 # cleanup
