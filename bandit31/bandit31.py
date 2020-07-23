@@ -43,6 +43,10 @@ print(f'cd /tmp/{FOLDERNAME}/repo && echo "May I come in?" | tee key.txt')
 _, stdout, _ = client.exec_command(f'cd /tmp/{FOLDERNAME}/repo && echo "May I come in?" | tee key.txt')
 utils.print_stdout(stdout)
 
+print(f'cd /tmp/{FOLDERNAME}/repo && git add -f key.txt && git commit -m "added key.txt"')
+_, stdout, _ = client.exec_command(f'cd /tmp/{FOLDERNAME}/repo && git add -f key.txt && git commit -m "added key.txt"')
+utils.print_stdout(stdout)
+
 # cleanup
 print('deleting temporary directory...')
 client.exec_command(f'rm -rf /tmp/{FOLDERNAME}')
