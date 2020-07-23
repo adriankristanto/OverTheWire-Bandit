@@ -53,7 +53,12 @@ stdin.write('yes\n')
 time.sleep(1)
 stdin.write(f'{PASSWORD}\n')
 stdin.flush()
+stdout = stdout.readlines()
 utils.print_stdout(stdout)
+password = utils.get_password(stdout[-7].split()[-1])
+
+# bandit32 password: 56a9bf19c63d650ce78e6ec0354ee45e
+print(f'bandit32 password: {password}\n')
 
 # cleanup
 print('deleting temporary directory...')
