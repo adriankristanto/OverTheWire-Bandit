@@ -28,6 +28,21 @@ stdin.write(PASSWORD + '\n')
 stdin.flush()
 utils.print_stdout(stdout)
 
+print(f"cat /tmp/{FOLDERNAME}/repo/README.md")
+_, stdout, _ = client.exec_command(f"cat /tmp/{FOLDERNAME}/repo/README.md")
+utils.print_stdout(stdout)
+# from the above command, we can read README.md, which shows that 
+# there is no password in production branch or the master branch
+# which might suggest the existence of a development branch
+
+# reference: https://www.jquery-az.com/list-branches-git/
+# to list all branches in local and remote repositories, we can use 
+# git branch -a
+print(f"cd /tmp/{FOLDERNAME}/repo && git branch -a")
+_, stdout, _ = client.exec_command(f"cd /tmp/{FOLDERNAME}/repo && git branch -a")
+utils.print_stdout(stdout)
+# we found out that there is a "dev" branch, which we can check out
+
 # clean up
 print('deleting temporary directory...')
 client.exec_command(f'rm -rf /tmp/{FOLDERNAME}')
