@@ -41,6 +41,7 @@ utils.print_stdout(stdout)
 
 # we can see that there is a tag called secret
 # we can tag the commit hash and use git show to show the content
+print(f'cd /tmp/{FOLDERNAME}/repo && git show f17132340e8ee6c159e0a4a6bc6f80e1da3b1aea')
 _, stdout, _ = client.exec_command(f'cd /tmp/{FOLDERNAME}/repo && git show f17132340e8ee6c159e0a4a6bc6f80e1da3b1aea')
 stdout = stdout.readlines()
 utils.print_stdout(stdout)
