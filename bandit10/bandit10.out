@@ -1,0 +1,13 @@
+connecting...
+
+base64 -d data.txt
+##################################################
+The password is IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+##################################################
+
+base64 -d data.txt | awk '{print $4}'
+##################################################
+IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+##################################################
+
+bandit11 password: IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
