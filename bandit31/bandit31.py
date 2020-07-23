@@ -47,6 +47,14 @@ print(f'cd /tmp/{FOLDERNAME}/repo && git add -f key.txt && git commit -m "added 
 _, stdout, _ = client.exec_command(f'cd /tmp/{FOLDERNAME}/repo && git add -f key.txt && git commit -m "added key.txt"')
 utils.print_stdout(stdout)
 
+print(f'cd /tmp/{FOLDERNAME}/repo && git push')
+stdin, stdout, _ = client.exec_command(f'cd /tmp/{FOLDERNAME}/repo && git push', get_pty=True)
+stdin.write('yes\n')
+time.sleep(1)
+stdin.write(f'{PASSWORD}\n')
+stdin.flush()
+utils.print_stdout(stdout)
+
 # cleanup
 print('deleting temporary directory...')
 client.exec_command(f'rm -rf /tmp/{FOLDERNAME}')
