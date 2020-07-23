@@ -52,6 +52,10 @@ _, stdout, _ = client.exec_command(f"cat /tmp/{FOLDERNAME}/repo/README.md")
 stdout = stdout.readlines()
 utils.print_stdout(stdout)
 
+password = stdout[-2].split()[-1]
+# bandit30 password: 5b90576bedb2cc04c86a9e924ce42faf
+print(f'bandit30 password: {password}\n')
+
 # clean up
 print('deleting temporary directory...')
 client.exec_command(f'rm -rf /tmp/{FOLDERNAME}')
