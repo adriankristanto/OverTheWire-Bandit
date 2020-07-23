@@ -56,6 +56,11 @@ password = stdout[-2].split()[-1]
 # bandit30 password: 5b90576bedb2cc04c86a9e924ce42faf
 print(f'bandit30 password: {password}\n')
 
+# ALTERNATIVE METHOD: 
+# read paked-refs file in .git directory
+# which contains all mapping to branches and tags
+# we can use git show <commit hash> into the dev branch
+
 # clean up
 print('deleting temporary directory...')
 client.exec_command(f'rm -rf /tmp/{FOLDERNAME}')
