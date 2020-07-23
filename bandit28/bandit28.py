@@ -29,9 +29,26 @@ stdin.write(PASSWORD + '\n')
 stdin.flush()
 utils.print_stdout(stdout)
 
-print(f'cd /tmp/{FOLDERNAME} && git log -a')
-_, stdout, _ = client.exec_command(f'cd /tmp/{FOLDERNAME} && git log -a')
+# show commit history
+print(f'cd /tmp/{FOLDERNAME}/repo && git log -a')
+_, stdout, _ = client.exec_command(f'cd /tmp/{FOLDERNAME}/repo && git log -a')
 utils.print_stdout(stdout)
+# in commit edd935d60906b33f0619605abd1689808ccdd5ee
+# they fix an info leak, therefore, we can go to commit 
+# c086d11a00c0648d095d04c089786efef5e01264 to see the leaked info
+
+# checkout to commit c086d11a00c0648d095d04c089786efef5e01264
+# to see the leaked info
+COMMIT = "c086d11a00c0648d095d04c089786efef5e01264"
+print(f'cd /tmp/{FOLDERNAME}/repo && git checkout {COMMIT}')
+_, stdout, _ = client.exec_command(f'cd /tmp/{FOLDERNAME}/repo && git checkout {COMMIT}')
+
+# now, README.md contains the password to bandit29
+print(f'cd /tmp/{FOLDERNAME}/repo && cat README.md')
+_, stdout, _ = client.exec_command(f'cd /tmp/{FOLDERNAME}/repo && cat README.md')
+stdout = stdout.readlines()
+utils.print_stdout(stdout)
+print(stdout)
 
 # cleanup
 print('deleting temporary folder...')
