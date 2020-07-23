@@ -40,7 +40,7 @@ utils.print_stdout(stdout)
 password = utils.get_password(stdout[0].split()[-1])
 
 # bandit28 password: 0ef186ac70e04ea33b4c1853d2526fa2
-print(f'bandit28 password: {password}')
+print(f'bandit28 password: {password}\n')
 
 # cleanup
 print('deleting temporary folder...')
