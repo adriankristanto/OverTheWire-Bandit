@@ -1,0 +1,91 @@
+connecting...
+downloading data.txt...
+/media/sf_sf/CTF/OverTheWire/overthewire-bandit/bandit12/data.txt progress: 0.00%/media/sf_sf/CTF/OverTheWire/overthewire-bandit/bandit12/data.txt progress: 100.00%
+
+file data.txt
+##################################################
+data.txt: ASCII text
+##################################################
+
+xxd -r data.txt > data2.bin && rm data.txt
+
+file data2.bin
+##################################################
+data2.bin: gzip compressed data, was "data2.bin", last modified: Thu May  7 18:14:30 2020, max compression, from Unix, original size modulo 2^32 573
+##################################################
+
+mv data2.bin data2.gz && gzip -d data2.gz
+
+file data2
+##################################################
+data2: bzip2 compressed data, block size = 900k
+##################################################
+
+bzip2 -d data2
+##################################################
+
+##################################################
+
+file data2.out
+##################################################
+data2.out: gzip compressed data, was "data4.bin", last modified: Thu May  7 18:14:30 2020, max compression, from Unix, original size modulo 2^32 20480
+##################################################
+
+mv data2.out data4.gz && gzip -d data4.gz
+file data4
+##################################################
+data4: POSIX tar archive (GNU)
+##################################################
+
+tar -xvf data4 && rm data4
+##################################################
+data5.bin
+##################################################
+
+file data5.bin
+##################################################
+data5.bin: POSIX tar archive (GNU)
+##################################################
+
+tar -xvf data5.bin && rm data5.bin
+##################################################
+data6.bin
+##################################################
+
+file data6.bin
+##################################################
+data6.bin: bzip2 compressed data, block size = 900k
+##################################################
+
+bzip2 -d data6.bin
+##################################################
+
+##################################################
+
+file data6.bin.out
+##################################################
+data6.bin.out: POSIX tar archive (GNU)
+##################################################
+
+tar -xvf data6.bin.out && rm data6.bin.out
+##################################################
+data8.bin
+##################################################
+
+file data8.bin
+##################################################
+data8.bin: gzip compressed data, was "data9.bin", last modified: Thu May  7 18:14:30 2020, max compression, from Unix, original size modulo 2^32 49
+##################################################
+
+mv data8.bin data8.gz && gzip -d data8.gz
+file data8
+##################################################
+data8: ASCII text
+##################################################
+
+cat data8 | awk '{print $4}'
+##################################################
+8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+##################################################
+
+bandit12 password: 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
