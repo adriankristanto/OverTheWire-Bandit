@@ -1,0 +1,14 @@
+connecting as bandit13...
+
+downloading bandit14 private key file...
+
+/media/sf_sf/CTF/OverTheWire/overthewire-bandit/bandit13/sshkey.private progress: 0.00%/media/sf_sf/CTF/OverTheWire/overthewire-bandit/bandit13/sshkey.private progress: 100.00%
+
+connecting as bandit14...
+
+cat /etc/bandit_pass/bandit14
+##################################################
+4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+##################################################
+
+bandit14 password: 4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
