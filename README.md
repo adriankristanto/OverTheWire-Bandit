@@ -1,4 +1,4 @@
-# overthewire-bandit
+# OverTheWire-Bandit
 ## Walkthrough of OverTheWire Bandit levels
 
 This is my attempt at solving bandit challenges programmatically using Python.
